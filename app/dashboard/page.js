@@ -97,7 +97,21 @@ export default function Dashboard() {
           <div style={{ fontWeight: 600, marginBottom: 8 }}>Upgrade to Pro</div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 16 }}>Unlimited sorts, config backup, priority support.</div>
           <button style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, color: 'white', padding: '10px 16px', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
-            {isPro ? '✓ Already Pro' : 'Upgrade — $8/mo'}
+          <button
+  onClick={() => {
+    const userId = localStorage.getItem('sortdrop_user_id');
+    window.open(`https://buy.stripe.com/test_3cI28sgyudkXaSHbqI0sU00?client_reference_id=${userId}`, '_blank');
+  }}
+  style={{
+    marginTop: 24, width: '100%',
+    background: 'rgba(255,255,255,0.08)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    borderRadius: 8, color: 'white',
+    padding: '10px 16px', fontSize: 13,
+    fontWeight: 600, cursor: 'pointer',
+  }}>
+  {isPro ? '✓ Already Pro' : 'Upgrade — $8/mo'}
+</button>
           </button>
         </div>
       </div>
