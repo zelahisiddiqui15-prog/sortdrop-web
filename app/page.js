@@ -1,65 +1,165 @@
-import Image from "next/image";
+'use client';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main style={{
+      minHeight: '100vh',
+      background: '#0D0B1E',
+      color: 'white',
+      fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+    }}>
+      {/* Nav */}
+      <nav style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '24px 48px',
+        borderBottom: '1px solid rgba(168, 85, 247, 0.15)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{
+            width: 32, height: 32,
+            background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
+            borderRadius: 8,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 16,
+          }}>↓</div>
+          <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>SORTDROP</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+          <a href="#how" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: 14 }}>How it works</a>
+          <a href="#pricing" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: 14 }}>Pricing</a>
+          <button
+            onClick={() => router.push('/onboarding')}
+            style={{
+              background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
+              border: 'none', borderRadius: 8,
+              color: 'white', padding: '10px 20px',
+              fontSize: 14, fontWeight: 600, cursor: 'pointer',
+            }}>
+            Get Started
+          </button>
         </div>
-      </main>
-    </div>
+      </nav>
+
+      {/* Hero */}
+      <section style={{ textAlign: 'center', padding: '100px 48px 80px' }}>
+        <div style={{
+          display: 'inline-block',
+          background: 'rgba(168, 85, 247, 0.1)',
+          border: '1px solid rgba(168, 85, 247, 0.3)',
+          borderRadius: 20, padding: '6px 16px',
+          fontSize: 13, color: '#A855F7',
+          marginBottom: 24,
+        }}>
+          AI-powered music file organizer
+        </div>
+        <h1 style={{
+          fontSize: 64, fontWeight: 800,
+          lineHeight: 1.1, marginBottom: 24,
+          background: 'linear-gradient(135deg, #ffffff 0%, #A855F7 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>
+          Your samples.<br />Finally organized.
+        </h1>
+        <p style={{
+          fontSize: 20, color: 'rgba(255,255,255,0.6)',
+          maxWidth: 520, margin: '0 auto 40px',
+          lineHeight: 1.6,
+        }}>
+          Tell SortDrop how your brain works as a producer. It builds your perfect folder system and keeps it organized automatically.
+        </p>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+          <button
+            onClick={() => router.push('/onboarding')}
+            style={{
+              background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
+              border: 'none', borderRadius: 12,
+              color: 'white', padding: '16px 32px',
+              fontSize: 16, fontWeight: 700, cursor: 'pointer',
+            }}>
+            Start for free — 25 sorts included
+          </button>
+        </div>
+        <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.3)' }}>
+          No credit card required
+        </p>
+      </section>
+
+      {/* How it works */}
+      <section id="how" style={{ padding: '80px 48px', maxWidth: 900, margin: '0 auto' }}>
+        <h2 style={{ textAlign: 'center', fontSize: 36, fontWeight: 700, marginBottom: 60 }}>
+          How it works
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24 }}>
+          {[
+            { step: '01', title: 'Tell us your setup', desc: 'Answer a few questions about your DAW, plugins, and how you like to organize files.' },
+            { step: '02', title: 'We build your system', desc: 'AI generates a custom folder structure based on exactly how you think about your music.' },
+            { step: '03', title: 'Drop files, stay organized', desc: 'Download the app. Every new sample, preset, or MIDI file gets sorted instantly.' },
+          ].map((item) => (
+            <div key={item.step} style={{
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(168, 85, 247, 0.2)',
+              borderRadius: 16, padding: 32,
+            }}>
+              <div style={{ fontSize: 13, color: '#A855F7', fontWeight: 700, marginBottom: 12 }}>{item.step}</div>
+              <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 12 }}>{item.title}</div>
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.6 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" style={{ padding: '80px 48px', maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
+        <h2 style={{ fontSize: 36, fontWeight: 700, marginBottom: 16 }}>Simple pricing</h2>
+        <p style={{ color: 'rgba(255,255,255,0.5)', marginBottom: 48 }}>Start free, upgrade when you're ready.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+          {[
+            { name: 'Free', price: '$0', desc: 'Get started', features: ['25 file sorts', 'AI folder setup', 'Mac app', 'Email support'], cta: 'Start free', highlight: false },
+            { name: 'Pro', price: '$8/mo', desc: 'For serious producers', features: ['Unlimited sorts', 'Everything in Free', 'Priority support', 'Config backup'], cta: 'Get Pro', highlight: true },
+          ].map((plan) => (
+            <div key={plan.name} style={{
+              background: plan.highlight ? 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(124,58,237,0.2))' : 'rgba(255,255,255,0.03)',
+              border: `1px solid ${plan.highlight ? 'rgba(168,85,247,0.6)' : 'rgba(255,255,255,0.1)'}`,
+              borderRadius: 16, padding: 32, textAlign: 'left',
+            }}>
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 8 }}>{plan.name}</div>
+              <div style={{ fontSize: 36, fontWeight: 800, marginBottom: 4 }}>{plan.price}</div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 24 }}>{plan.desc}</div>
+              {plan.features.map(f => (
+                <div key={f} style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ color: '#A855F7' }}>✓</span> {f}
+                </div>
+              ))}
+              <button
+                onClick={() => router.push('/onboarding')}
+                style={{
+                  marginTop: 24, width: '100%',
+                  background: plan.highlight ? 'linear-gradient(135deg, #A855F7, #7C3AED)' : 'rgba(255,255,255,0.08)',
+                  border: 'none', borderRadius: 10,
+                  color: 'white', padding: '12px',
+                  fontSize: 14, fontWeight: 600, cursor: 'pointer',
+                }}>
+                {plan.cta}
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{
+        textAlign: 'center', padding: '40px 48px',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        color: 'rgba(255,255,255,0.3)', fontSize: 13,
+      }}>
+        © 2025 SortDrop. Built for producers, by producers.
+      </footer>
+    </main>
   );
 }
