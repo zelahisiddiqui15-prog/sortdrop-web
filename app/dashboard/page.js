@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const BACKEND = 'https://web-production-a92d.up.railway.app';
+const DOWNLOAD_URL = 'https://github.com/zelahisiddiqui15-prog/sortdrop-backend/releases/download/v1.0.0/SortDrop.zip';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -121,7 +122,9 @@ export default function Dashboard() {
           <div style={{ fontSize: 24, marginBottom: 12 }}>⬇️</div>
           <div style={{ fontWeight: 600, marginBottom: 8 }}>Download the app</div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 16 }}>Mac menu bar app that watches your folders automatically.</div>
-          <button style={{ background: 'linear-gradient(135deg, #A855F7, #7C3AED)', border: 'none', borderRadius: 8, color: 'white', padding: '10px 16px', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
+          <button
+            onClick={() => window.open(DOWNLOAD_URL, '_blank')}
+            style={{ background: 'linear-gradient(135deg, #A855F7, #7C3AED)', border: 'none', borderRadius: 8, color: 'white', padding: '10px 16px', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
             Download for Mac
           </button>
         </div>
