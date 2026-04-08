@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const BACKEND = 'https://web-production-a92d.up.railway.app';
-const DOWNLOAD_URL = 'https://github.com/zelahisiddiqui15-prog/sortdrop-backend/releases/download/v1.0.0/SortDrop.zip';
+const DOWNLOAD_URL = 'https://github.com/zelahisiddiqui15-prog/sortdrop-backend/releases/download/v1.0.1/SortDrop.zip';
 
 export default function Dashboard() {
   const router = useRouter();
