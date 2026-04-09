@@ -26,8 +26,8 @@ export default function Home() {
             borderRadius: 8,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 16,
-          }}>↓</div>
-          <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>SORTDROP</span>
+          }}>✦</div>
+          <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>CRATIFY</span>
         </div>
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
           <a href="#how" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: 14 }}>How it works</a>
@@ -71,7 +71,7 @@ export default function Home() {
           maxWidth: 520, margin: '0 auto 40px',
           lineHeight: 1.6,
         }}>
-          Tell SortDrop how your brain works as a producer. It builds your perfect folder system and keeps it organized automatically.
+          Tell Cratify how your brain works as a producer. It builds your perfect folder system and keeps it organized automatically.
         </p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
           <button
@@ -158,7 +158,7 @@ export default function Home() {
         borderTop: '1px solid rgba(255,255,255,0.06)',
         color: 'rgba(255,255,255,0.3)', fontSize: 13,
       }}>
-        © 2025 SortDrop. Built for producers, by producers.
+        © 2025 Cratify. Built for producers, by producers.
       </footer>
     </main>
   );

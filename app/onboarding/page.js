@@ -116,8 +116,9 @@ export default function Onboarding() {
           width: 32, height: 32,
           background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
           borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>↓</div>
-        <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>SORTDROP</span>
+          fontSize: 16,
+        }}>✦</div>
+        <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>CRATIFY</span>
       </div>
 
       {/* Progress bar */}
@@ -128,8 +129,7 @@ export default function Onboarding() {
         </div>
         <div style={{ height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 4 }}>
           <div style={{
-            height: 4,
-            borderRadius: 4,
+            height: 4, borderRadius: 4,
             background: 'linear-gradient(90deg, #A855F7, #7C3AED)',
             width: `${((step + 1) / QUESTIONS.length) * 100}%`,
             transition: 'width 0.3s ease',
@@ -191,7 +191,6 @@ export default function Onboarding() {
           />
         )}
 
-        {/* Next button */}
         <button
           onClick={handleNext}
           disabled={!canContinue() || loading}

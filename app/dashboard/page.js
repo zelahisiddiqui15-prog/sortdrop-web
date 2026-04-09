@@ -47,8 +47,8 @@ export default function Dashboard() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 48 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #A855F7, #7C3AED)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>↓</div>
-          <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>SORTDROP</span>
+          <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #A855F7, #7C3AED)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>✦</div>
+          <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>CRATIFY</span>
         </div>
         <div style={{
           background: isPro ? 'rgba(168,85,247,0.2)' : 'rgba(255,255,255,0.05)',
@@ -75,7 +75,7 @@ export default function Dashboard() {
         <div>
           <div style={{ fontSize: 12, color: '#A855F7', fontWeight: 600, marginBottom: 4, letterSpacing: '0.08em' }}>YOUR USER ID</div>
           <div style={{ fontFamily: 'monospace', fontSize: 15, color: 'rgba(255,255,255,0.9)' }}>{userId}</div>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginTop: 4 }}>Paste this into the desktop app under "Enter User ID"</div>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginTop: 4 }}>Paste this into the Cratify app under "Enter User ID"</div>
         </div>
         <button
           onClick={handleCopy}
@@ -98,7 +98,7 @@ export default function Dashboard() {
         }}>
           <div style={{ color: '#A855F7', fontSize: 13, marginBottom: 16, fontFamily: 'sans-serif', fontWeight: 600 }}>YOUR FOLDER STRUCTURE</div>
           <div style={{ fontSize: 14, lineHeight: 2, color: 'rgba(255,255,255,0.8)' }}>
-            <div>📁 SortDrop/</div>
+            <div>📁 Cratify/</div>
             {answers.file_types?.includes('Stems & Loops') && <>
               <div>&nbsp;&nbsp;📁 Bass/</div>
               <div>&nbsp;&nbsp;&nbsp;&nbsp;📁 Am/ &nbsp;&nbsp;<span style={{ color: 'rgba(255,255,255,0.3)' }}>← stems sorted by key</span></div>
