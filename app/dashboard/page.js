@@ -20,7 +20,6 @@ export default function Dashboard() {
   const [answers, setAnswers] = useState(null);
   const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState('');
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const uid = localStorage.getItem('sortdrop_user_id');
@@ -38,12 +37,6 @@ export default function Dashboard() {
         if (data.username) setUsername(data.username);
       });
   }, []);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(userId);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const handleLogout = () => {
     localStorage.removeItem('sortdrop_user_id');
@@ -99,33 +92,44 @@ export default function Dashboard() {
       {/* Welcome */}
       <div style={{ marginBottom: 40 }}>
         <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 8 }}>
-          {username ? `Hey @${username} 👋` : 'Your setup is ready 🎉'}
+          {username ? `Hey @${username} 👋` : 'Welcome to Cratify 🎉'}
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16 }}>
-          Here's your personalized folder structure based on your answers.
+          Your account is active. Download the app and start organizing your samples.
         </p>
       </div>
 
-      {/* User ID Card */}
+      {/* Plan card */}
       <div style={{
-        background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.3)',
-        borderRadius: 16, padding: '20px 24px', marginBottom: 32,
+        background: isPro ? 'linear-gradient(135deg, rgba(168,85,247,0.15), rgba(124,58,237,0.15))' : 'rgba(255,255,255,0.03)',
+        border: `1px solid ${isPro ? 'rgba(168,85,247,0.5)' : 'rgba(255,255,255,0.08)'}`,
+        borderRadius: 16, padding: '24px 28px', marginBottom: 32,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <div style={{ fontSize: 12, color: '#A855F7', fontWeight: 600, marginBottom: 4, letterSpacing: '0.08em' }}>YOUR USER ID</div>
-          <div style={{ fontFamily: 'monospace', fontSize: 15, color: 'rgba(255,255,255,0.9)' }}>{userId}</div>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginTop: 4 }}>Paste this into the Cratify app under "Enter User ID"</div>
+          <div style={{ fontSize: 12, color: isPro ? '#A855F7' : 'rgba(255,255,255,0.4)', fontWeight: 600, marginBottom: 6, letterSpacing: '0.08em' }}>
+            {isPro ? 'PRO PLAN' : 'FREE PLAN'}
+          </div>
+          <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>
+            {isPro ? 'Unlimited sorts' : `${sortsLeft} sorts remaining`}
+          </div>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>
+            {isPro ? 'Full access — all features unlocked' : 'Upgrade to Pro for unlimited sorts'}
+          </div>
         </div>
-        <button onClick={handleCopy} style={{
-          background: copied ? 'rgba(168,85,247,0.3)' : 'rgba(168,85,247,0.15)',
-          border: '1px solid rgba(168,85,247,0.4)',
-          borderRadius: 8, color: copied ? '#C084FC' : '#A855F7',
-          padding: '8px 16px', fontSize: 13, fontWeight: 600,
-          cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap',
-        }}>
-          {copied ? '✓ Copied!' : 'Copy ID'}
-        </button>
+        {!isPro && (
+          <button
+            onClick={() => window.open(`https://buy.stripe.com/test_3cI28sgyudkXaSHbqI0sU00?client_reference_id=${userId}`, '_blank')}
+            style={{
+              background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
+              border: 'none', borderRadius: 10,
+              color: 'white', padding: '12px 24px',
+              fontSize: 14, fontWeight: 600, cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}>
+            Upgrade — $8/mo
+          </button>
+        )}
       </div>
 
       {/* Folder preview */}
@@ -155,7 +159,7 @@ export default function Dashboard() {
       )}
 
       {/* Next steps */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 32 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 24, marginBottom: 12 }}>⬇️</div>
           <div style={{ fontWeight: 600, marginBottom: 8 }}>Download the app</div>
@@ -167,17 +171,13 @@ export default function Dashboard() {
           </button>
         </div>
         <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: 24 }}>
-          <div style={{ fontSize: 24, marginBottom: 12 }}>⚡</div>
-          <div style={{ fontWeight: 600, marginBottom: 8 }}>Upgrade to Pro</div>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 16 }}>Unlimited sorts, config backup, priority support.</div>
+          <div style={{ fontSize: 24, marginBottom: 12 }}>📖</div>
+          <div style={{ fontWeight: 600, marginBottom: 8 }}>How it works</div>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 16 }}>Open the app, sign in with your email and password, and Cratify starts watching automatically.</div>
           <button
-            onClick={() => window.open(`https://buy.stripe.com/test_3cI28sgyudkXaSHbqI0sU00?client_reference_id=${userId}`, '_blank')}
-            style={{
-              background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: 8, color: 'white', padding: '10px 16px', fontSize: 13,
-              fontWeight: 600, cursor: 'pointer',
-            }}>
-            {isPro ? '✓ Already Pro' : 'Upgrade — $8/mo'}
+            onClick={() => router.push('/#how')}
+            style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, color: 'white', padding: '10px 16px', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
+            Learn more
           </button>
         </div>
       </div>
