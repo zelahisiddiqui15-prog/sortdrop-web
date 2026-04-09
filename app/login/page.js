@@ -16,6 +16,7 @@ const LogoMark = ({ size = 32 }) => (
 export default function Login() {
   const router = useRouter();
   const [tab, setTab] = useState('login');
+  const [identifier, setIdentifier] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -44,7 +45,7 @@ export default function Login() {
       const res = await fetch(`${BACKEND}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: identifier, password }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -53,7 +54,7 @@ export default function Login() {
         localStorage.setItem('cratify_email', data.email || '');
         router.push('/dashboard');
       } else {
-        setError(data.error === 'invalid credentials' ? 'Invalid email or password.' : data.error);
+        setError('Invalid email/username or password.');
       }
     } catch {
       setError('Connection error. Please try again.');
@@ -81,7 +82,11 @@ export default function Login() {
         localStorage.setItem('cratify_email', email);
         router.push('/dashboard');
       } else {
-        setError(data.error === 'email already registered' ? 'Email already registered. Try signing in.' : data.error);
+        setError(data.error === 'email already registered'
+          ? 'Email already registered. Try signing in.'
+          : data.error === 'username already taken'
+          ? `@${username} is already taken.`
+          : data.error || 'Something went wrong.');
       }
     } catch {
       setError('Connection error. Please try again.');
@@ -113,15 +118,12 @@ export default function Login() {
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', padding: '48px 24px',
     }}>
-      {/* Logo */}
-      <div
-        onClick={() => router.push('/')}
+      <div onClick={() => router.push('/')}
         style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 40, cursor: 'pointer' }}>
         <LogoMark size={32} />
         <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '0.05em' }}>CRATIFY</span>
       </div>
 
-      {/* Card */}
       <div style={{
         width: '100%', maxWidth: 480,
         background: 'rgba(255,255,255,0.03)',
@@ -143,13 +145,20 @@ export default function Login() {
           ))}
         </div>
 
-        {/* Login form */}
         {tab === 'login' && (
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <input type="email" placeholder="Email" value={email}
-              onChange={e => setEmail(e.target.value)} required style={inputStyle} />
-            <input type="password" placeholder="Password" value={password}
-              onChange={e => setPassword(e.target.value)} required style={inputStyle} />
+            <input
+              type="text"
+              placeholder="Email or username"
+              value={identifier}
+              onChange={e => setIdentifier(e.target.value)}
+              required style={inputStyle} />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required style={inputStyle} />
             {error && <div style={{ color: '#EF4444', fontSize: 13, textAlign: 'center' }}>{error}</div>}
             <button type="submit" disabled={loading} style={btnStyle}>
               {loading ? 'Signing in...' : 'Sign In →'}
@@ -157,7 +166,6 @@ export default function Login() {
           </form>
         )}
 
-        {/* Signup form */}
         {tab === 'signup' && (
           <form onSubmit={handleSignup} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <input type="email" placeholder="Email" value={email}
